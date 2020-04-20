@@ -1,7 +1,6 @@
 // sRand/table is a small command-line-programm to generate distributance-tables of
 // Charsets for further analysis.
-//
-//
+
 package main
 
 import (
