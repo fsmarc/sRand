@@ -7,7 +7,7 @@ charset to define the characters of the generated strings.
 
 ## Install
 ```
-go get github.com/fsmarc/sRand/Rand
+go get github.com/fsmarc/sRand/rand
 ```
 
 ## Usage
