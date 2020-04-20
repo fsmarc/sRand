@@ -1,6 +1,6 @@
 # sRand
 
-[![GoDoc](https://godoc.org/github.com/fsmarc/sRand/Rand?status.svg)](https://godoc.org/github.com/fsmarc/sRand/Rand)
+[![GoDoc](https://godoc.org/github.com/fsmarc/sRand/rand?status.svg)](https://godoc.org/github.com/fsmarc/sRand/rand)
 
 A pseudo-random string generator written in [golang](http://www.golang.org). It uses a 
 charset to define the characters of the generated strings.
@@ -41,6 +41,6 @@ rnd := rand.NewWithCharset(rand.NewSource(1), "Hello World!")
 
 ## Examples
 
-See [the project documentation](https://godoc.org/github.com/fsmarc/sRand/Rand) for examples:
-* [Usage with DefaultCharset](https://godoc.org/github.com/fsmarc/sRand/Rand#example-New)
-* [Usage with CustomCharset](https://godoc.org/github.com/fsmarc/sRand/Rand#example-New)
+See [the project documentation](https://godoc.org/github.com/fsmarc/sRand/rand) for examples:
+* [Usage with DefaultCharset](https://godoc.org/github.com/fsmarc/sRand/rand#example-New)
+* [Usage with CustomCharset](https://godoc.org/github.com/fsmarc/sRand/rand#example-New)
