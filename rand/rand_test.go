@@ -1,12 +1,14 @@
-package rand
+package rand_test
 
 import (
+	"bytes"
 	"fmt"
-	"os"
 	"strings"
 	"testing"
 	"text/tabwriter"
 	"time"
+
+	"github.com/fsmarc/sRand/rand"
 )
 
 func TestStringn(t *testing.T) {
@@ -18,7 +20,7 @@ func TestStringn(t *testing.T) {
 	time := time.Now().UnixNano()
 	t.Logf("Seed: %d", time)
 
-	rnd := New(NewSource(time))
+	rnd := rand.New(rand.NewSource(time))
 
 	for i := 0; i < n; i++ {
 		str := rnd.Stringn(l)
@@ -36,12 +38,13 @@ func TestStringn(t *testing.T) {
 }
 
 func TestDistributance(t *testing.T) {
+	buf := new(bytes.Buffer)
 	n := 1000
 
 	//initialize rand
 	time := time.Now().UnixNano()
 	t.Logf("Seed: %d", time)
-	rnd := New(NewSource(time))
+	rnd := rand.New(rand.NewSource(time))
 
 	//initialize measurement slice
 	dist := make([]int, len(rnd.Charset))
@@ -54,8 +57,7 @@ func TestDistributance(t *testing.T) {
 
 	//initialize table
 	w := new(tabwriter.Writer)
-	w.Init(os.Stdout, 0, 8, 0, '\t', 0)
-	defer w.Flush()
+	w.Init(buf, 0, 8, 0, '\t', 0)
 
 	fmt.Fprintln(w, "Char\tOcc.\t%")
 
@@ -63,25 +65,19 @@ func TestDistributance(t *testing.T) {
 		var perc float32 = float32(occ) / float32(n)
 		fmt.Fprintf(w, "%s\t%d\t%3.2f\n", string(rnd.Charset[i]), occ, perc*100)
 	}
+
+	w.Flush()
+
+	t.Logf("\n%s", buf)
 }
 
 func BenchmarkChar(b *testing.B) {
 	time := time.Now().UnixNano()
 	b.Logf("Seed: %d", time)
 
-	rnd := New(NewSource(time))
+	rnd := rand.New(rand.NewSource(time))
 
 	for i := 0; i < b.N; i++ {
 		rnd.Char()
 	}
-}
-
-func ExampleNew() {
-	rnd := New(NewSource(1))
-	fmt.Println(rnd.Stringn(10))
-}
-
-func ExampleNewWithCharset() {
-	rnd := NewWithCharset(NewSource(1), "Hello World!")
-	fmt.Println(rnd.Char())
 }
