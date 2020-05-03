@@ -9,10 +9,11 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"sRand/rand"
 	"strings"
 	"text/tabwriter"
 	"time"
+
+	"github.com/fsmarc/sRand/rand"
 )
 
 var n int
