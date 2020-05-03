@@ -21,3 +21,8 @@ func ExampleNewWithCharset() {
 	rnd := rand.NewWithCharset(rand.NewSource(1), "Hello World!") //use another int64 as Seed.
 	fmt.Println(rnd.Char())
 }
+
+func ExampleBase64UrlCharset() {
+	rnd := rand.NewWithCharset(rand.NewSource(1), rand.Base64UrlCharset)
+	fmt.Println(rnd.Stringn(11))
+}
